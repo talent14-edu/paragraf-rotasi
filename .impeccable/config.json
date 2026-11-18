@@ -1,0 +1,32 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "fraunces",
+        "createdAt": "2026-11-18T07:30:48.356Z",
+        "reason": "Claude: same display face as the Ela/Aras level boards made earlier this session for this game; kept for series consistency"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "ekstra/paragraf-rotasi/index.html"
+        ],
+        "createdAt": "2026-11-18T07:30:48.685Z",
+        "reason": "Claude: background matches the cream ground of the Codex character sheets so the framed Aras cards sit on the same tone"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "ekstra/paragraf-rotasi/style.css"
+        ],
+        "createdAt": "2026-11-18T07:31:05.955Z",
+        "reason": "Claude: the only match is the y-axis line of the bar chart (.cubuklar), not a card accent"
+      }
+    ]
+  }
+}
