@@ -2,7 +2,8 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#16203A">
 <title>Kâşif Aras · Paragraf Rotası</title>
 <meta name="description" content="Kâşif Aras ile 9 duraklı paragraf macerası: soruları çöz, ekipman kazan, hazineye ulaş.">
 <meta property="og:title" content="Kâşif Aras · Paragraf Rotası">
@@ -20,20 +21,24 @@
 <section id="giris" class="ekran aktif">
   <div class="giris-ic">
     <div class="giris-metin">
-      <h1>Kâşif Aras<br><em>Paragraf Rotası</em></h1>
-      <p class="giris-ac">Aras yola elinde bir harita ve küçük bir fenerle çıkıyor. Her durakta paragraf sorularını çöz, ekipman kazan, seviye atla ve hazinenin anahtarını bul.</p>
+      <h1>Kâşif Aras <em>Paragraf Rotası</em></h1>
+      <p class="giris-ac">9 durak, 36 paragraf sorusu ve bir hazine. Aras yola elinde bir harita ve küçük bir fenerle çıkıyor; her durakta soruları çözdükçe yeni ekipman kazanıp seviye atlıyor.</p>
       <ul class="kurallar">
-        <li><span class="ik ik-teal">💧</span><div><b>Mürekkep damlası:</b> Her doğru cevap +10, 30 saniyede cevaplarsan +5 bonus.</div></li>
-        <li><span class="ik ik-red">🏮</span><div><b>3 fener:</b> Her yanlış cevap bir feneri söndürür. Durağı geçmek için 4 sorudan en az 3'ü doğru olmalı.</div></li>
-        <li><span class="ik ik-must">✨</span><div><b>Gizli İşaret:</b> Her durakta bir kez ipucu alır, bir yanlış şıkkı elersin.</div></li>
+        <li><span class="ik">💧</span><div><b>Mürekkep damlası</b> · Her doğru cevap +10, 30 saniyede cevaplarsan +5.</div></li>
+        <li><span class="ik">🏮</span><div><b>3 fener</b> · Her yanlış bir feneri söndürür. Durağı geçmek için 4 sorudan 3'ü doğru olmalı.</div></li>
+        <li><span class="ik">🔥</span><div><b>Seri</b> · Art arda doğru cevaplar seriyi büyütür; <b>Gizli İşaret</b> jokeri bir yanlış şıkkı eler.</div></li>
       </ul>
       <div class="giris-btn">
-        <button class="btn btn-ana" id="baslaBtn">Maceraya Başla</button>
+        <button class="btn btn-altin btn-buyuk nabiz" id="baslaBtn">Maceraya Başla</button>
         <button class="btn btn-ince" id="sifirlaBtn" hidden>Baştan başla</button>
       </div>
     </div>
     <div class="giris-gorsel">
-      <img class="kgorsel" src="img/aras1.webp" alt="Çırak kâşif Aras, elinde harita ve fener" width="282" height="790">
+      <img class="kgorsel" id="girisGorsel" src="img/aras1.webp" alt="Kâşif Aras" width="282" height="790">
+      <div>
+        <div class="sy-etk" id="syEtk">5 SEVİYE SENİ BEKLİYOR</div>
+        <div class="seviye-yolu" id="seviyeYolu" style="margin-top:8px"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -46,18 +51,21 @@
       <div class="hud-kucuk" id="hudSeviyeNo">SEVİYE 1</div>
       <div class="hud-ad" id="hudSeviyeAd">Çırak</div>
     </div>
-    <div class="hud-murekkep" title="Mürekkep damlası"><span>💧</span><b id="hudMurekkep">0</b></div>
-    <div class="hud-ekipman" id="hudEkipman" aria-label="Kazanılan ekipmanlar"></div>
+    <div class="rota">
+      <div class="rota-ust"><span id="rotaSol">ROTA 0/9</span><span id="rotaSag"></span></div>
+      <div class="rota-serit" id="rotaSerit" aria-label="Rota ve ekipmanlar"></div>
+    </div>
+    <div class="hud-murekkep" id="hudMurekkepKutu" title="Mürekkep damlası"><span>💧</span><b id="hudMurekkep">0</b></div>
     <button class="hud-ses" id="sesBtn" aria-label="Sesi aç/kapat">🔊</button>
   </header>
-  <div class="harita-kaydir">
+  <div class="harita-kaydir" id="haritaKaydir">
     <div class="harita-alan" id="haritaAlan">
-      <img src="img/harita.webp" alt="Dokuz duraklı paragraf haritası" class="harita-img" width="1536" height="1024">
+      <img src="img/harita.webp" alt="Dokuz duraklı paragraf haritası" class="harita-img" width="1536" height="1024" draggable="false">
       <div id="duraklar"></div>
       <div class="pin" id="pin"><div class="pin-yuz" id="pinYuz"></div></div>
     </div>
   </div>
-  <p class="harita-not">Parlayan durağa dokun. Geçtiğin duraklara geri dönüp daha çok yıldız toplayabilirsin.</p>
+  <button class="btn btn-altin nabiz siradaki-btn" id="siradakiBtn"></button>
 </section>
 
 <!-- KATMAN (sandık, soru, sonuç, seviye, final) -->
