@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kâşif Aras · Paragraf Rotası</title>
+<meta name="description" content="Kâşif Aras ile 9 duraklı paragraf macerası: soruları çöz, ekipman kazan, hazineye ulaş.">
+<meta property="og:title" content="Kâşif Aras · Paragraf Rotası">
+<meta property="og:description" content="9 durak, 36 paragraf sorusu. Soruları çöz, ekipman kazan, hazineye ulaş.">
+<meta property="og:image" content="img/aras5.webp">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- GİRİŞ -->
+<section id="giris" class="ekran aktif">
+  <div class="giris-ic">
+    <div class="giris-metin">
+      <div class="ust">9 DURAKLI PARAGRAF MACERASI</div>
+      <h1>Kâşif Aras<br><em>Paragraf Rotası</em></h1>
+      <p class="giris-ac">Aras yola elinde bir harita ve küçük bir fenerle çıkıyor. Her durakta paragraf sorularını çöz, ekipman kazan, seviye atla ve hazinenin anahtarını bul.</p>
+      <ul class="kurallar">
+        <li><span class="ik ik-teal">💧</span><div><b>Mürekkep damlası:</b> Her doğru cevap +10, 30 saniyede cevaplarsan +5 bonus.</div></li>
+        <li><span class="ik ik-red">🏮</span><div><b>3 fener:</b> Her yanlış cevap bir feneri söndürür. Durağı geçmek için 4 sorudan en az 3'ü doğru olmalı.</div></li>
+        <li><span class="ik ik-must">✨</span><div><b>Gizli İşaret:</b> Her durakta bir kez ipucu alır, bir yanlış şıkkı elersin.</div></li>
+      </ul>
+      <div class="giris-btn">
+        <button class="btn btn-ana" id="baslaBtn">Maceraya Başla</button>
+        <button class="btn btn-ince" id="sifirlaBtn" hidden>Baştan başla</button>
+      </div>
+    </div>
+    <div class="giris-gorsel">
+      <img class="kgorsel" src="img/aras1.webp" alt="Çırak kâşif Aras, elinde harita ve fener" width="282" height="790">
+    </div>
+  </div>
+</section>
+
+<!-- HARİTA -->
+<section id="harita" class="ekran">
+  <header class="hud">
+    <button class="hud-avatar" id="hudAvatar" aria-label="Aras'ın seviyesi"></button>
+    <div class="hud-seviye">
+      <div class="hud-kucuk" id="hudSeviyeNo">SEVİYE 1</div>
+      <div class="hud-ad" id="hudSeviyeAd">Çırak</div>
+    </div>
+    <div class="hud-murekkep" title="Mürekkep damlası"><span>💧</span><b id="hudMurekkep">0</b></div>
+    <div class="hud-ekipman" id="hudEkipman" aria-label="Kazanılan ekipmanlar"></div>
+    <button class="hud-ses" id="sesBtn" aria-label="Sesi aç/kapat">🔊</button>
+  </header>
+  <div class="harita-kaydir">
+    <div class="harita-alan" id="haritaAlan">
+      <img src="img/harita.webp" alt="Dokuz duraklı paragraf haritası" class="harita-img" width="1536" height="1024">
+      <div id="duraklar"></div>
+      <div class="pin" id="pin"><div class="pin-yuz" id="pinYuz"></div></div>
+    </div>
+  </div>
+  <p class="harita-not">Parlayan durağa dokun. Geçtiğin duraklara geri dönüp daha çok yıldız toplayabilirsin.</p>
+</section>
+
+<!-- KATMAN (sandık, soru, sonuç, seviye, final) -->
+<div class="katman" id="katman" hidden>
+  <div class="kart" id="kart" role="dialog" aria-modal="true"></div>
+</div>
+
+<canvas id="konfeti" aria-hidden="true"></canvas>
+
+<script src="data.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
